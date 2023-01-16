@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="slider-outer">
+            <img src="imgs/previous-icon.png" class="prev">
+                <div class="slider-inner">
+                    <div class="slider-item active">
+                        <img src="imgs/clary sage.jpg" width="300px" height="300px">
+                    </div>
+                    <div class="slider-item active">
+                        <img src="imgs/Cypress.jpg" width="300px" height="300px">
+                    </div>
+                    <div class="slider-item active">
+                        <img src="imgs/myrrh.jpg" width="300px" height="300px">
+                    </div>
+                    <div class="slider-item">
+                        <img src="imgs/Helichrysum.jpg" width="300px" height="300px">
+                    </div>
+                    <div class="slider-item">
+                        <img src="imgs/Neroli.jpg" width="300px" height="300px">
+                    </div>
+                    <div class="slider-item">
+                        <img src="imgs/turmeric.jpg"width="300px" height="300px">
+                    </div>
+                </div>
+            <img src="imgs/next-icon.png" class="next">
+        </div>
+    </div>
+
+
+    <style>
+        .slider-inner {
+            display: flex;
+            width: 300px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            float: left;
+            padding: 3px;
+            border: #333 solid 1px;
+            margin: auto;
+        }
+
+        .slider-inner div {
+            display: none;
+            width: 300px;
+            height: 300px;
+        }
+        
+        .slider-inner div.active {
+            display: flex;
+            float: left;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            align-items: center;
+        }
+
+        .prev, .next {
+            display: flex;
+            float: left;
+            cursor: pointer;
+            background-color: aliceblue;
+        }
+
+        .prev {
+            margin-right: -50px;
+            z-index: 100;
+            position: relative;
+        }
+
+        .next {
+            margin-left: -50px;
+            z-index: 100;
+            position: relative;
+        }
+        .slider-outer {
+            display: flex;
+            width: 500px;
+            align-items: center;
+            background-color: #333;
+            margin: auto;
+        }
+
+    </style>
+    <script>
+        $(document).ready(function(){
+            $('.next').on('click', function(){
+                var currentImg = $('.active');
+                var nextImg = currentImg.next();
+
+                if(nextImg.length){
+                    currentImg.removeClass('active').css('z-index', -10);
+                    nextImg.addClass('active').css('z-index', 10);
+                }
+            });
+
+            $('.prev').on('click', function(){
+                var currentImg = $('.active');
+                var prevImg = currentImg.prev();
+
+                if(prevImg.length){
+                    currentImg.removeClass('active').css('z-index', -10);
+                    prevImg.addClass('active').css('z-index', 10);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
